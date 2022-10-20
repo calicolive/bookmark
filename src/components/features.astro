@@ -44,7 +44,7 @@
       </div>
     </div>
     <!-- Tab Panels -->
-    <section id="panels" class="container mx-auto">
+    <div id="panels" class="container mx-auto">
       <!-- Panel 1 -->
       <div class="flex flex-col py-5 md:flex-row md:space-x-7 panel panel-1">
         <div class="flex justify-center md:w-1/2">
@@ -137,7 +137,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </section>
 
@@ -151,3 +151,29 @@
     }
   }
 </style>
+
+<script>
+  const tabs = document.querySelectorAll(".tab");
+  const panels = document.querySelectorAll(".panel");
+
+  tabs.forEach((tab) => tab.addEventListener("click", onTabClick));
+
+  function onTabClick(e) {
+    tabs.forEach((tab) => {
+      tab.children[0].classList.remove(
+        "border-softRed",
+        "border-b-4",
+        "md:border-b-0"
+      );
+    });
+
+    panels.forEach((panel) => panel.classList.add("hidden"));
+
+    e.target.classList.add("border-softRed", "border-b-4");
+    const classString = e.target.getAttribute("data-target");
+    document
+      .getElementById("panels")
+      .getElementsByClassName(classString)[0]
+      .classList.remove("hidden");
+  }
+</script>
