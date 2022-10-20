@@ -22,6 +22,32 @@
         >Login</a
       >
     </div>
+    <!-- Hamburger Menu -->
+    <button
+      id="menu-btn"
+      class="z-30 block md:hidden focus:outline-none hamburger"
+    >
+      <span class="hamburger-top"></span>
+      <span class="hamburger-middle"></span>
+      <span class="hamburger-bottom"></span>
+    </button>
+  </div>
+  <div
+    id="menu"
+    class="fixed inset-0 z-20 hidden flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-24 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-90 bg-veryDarkBlue"
+  >
+    <div class="w-full py-3 text-center">
+      <a href="#features" class="block hover:text-softRed">Features</a>
+    </div>
+    <div class="w-full py-3 text-center">
+      <a href="#download" class="block hover:text-softRed">Download</a>
+    </div>
+    <div class="w-full py-3 text-center">
+      <a href="#faq" class="block hover:text-softRed">FAQ</a>
+    </div>
+    <div class="w-full py-3 text-center">
+      <a href="#" class="block hover:text-softRed">Login</a>
+    </div>
   </div>
 </nav>
 
@@ -77,4 +103,69 @@
       @apply absolute rounded-l-full top-52 bg-softBlue;
     }
   }
+
+  /* hamburger menu */
+  .hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .hamburger-top,
+  .hamburger-middle,
+  .hamburger-bottom {
+    position: absolute;
+    width: 24px;
+    height: 3px;
+    top: 0;
+    left: 0;
+    background: #000;
+    transform: rotate(0);
+    transition: all 0.5s;
+  }
+  .hamburger-middle {
+    transform: translateY(7px);
+  }
+  .hamburger-bottom {
+    transform: translateY(14px);
+  }
+  .open {
+    transform: rotate(90deg);
+    position: fixed;
+    top: 50px;
+    right: 25px;
+  }
+  .open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translateX(6px);
+    background-color: #fff;
+  }
+  .open .hamburger-middle {
+    display: none;
+  }
+  .open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+    background-color: #fff;
+  }
 </style>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+  const logo = document.getElementById("logo");
+
+  // Hamburger button listener
+  btn.addEventListener("click", navToggle);
+
+  function navToggle() {
+    btn.classList.toggle("open");
+    menu.classList.toggle("hidden");
+    menu.classList.toggle("flex");
+
+    if (menu.classList.contains("flex")) {
+      logo.setAttribute("src", "./images/logo-bookmark-footer.svg");
+    } else {
+      logo.setAttribute("src", "./images/logo-bookmark.svg");
+    }
+  }
+</script>
